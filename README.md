@@ -27,7 +27,7 @@ rancher:
   environment:
     CRYPT_KEY_URL: http://url.to.your.key
   repositories:
-    rancheros-firewall:
+    rancheros-data-encryption:
       url: https://raw.githubusercontent.com/300481/rancheros-data-encryption/master
   services_include:
     rancheros-data-encryption: true
