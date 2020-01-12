@@ -9,7 +9,7 @@ rancheros-data-encryption:
     io.rancher.os.scope: "system"
     io.rancher.os.after: "network"
   volumes:
-    - /mnt:/mnt
+    - /mnt:/mnt:z,shared
     - /dev:/dev
   restart: always
   environment:
