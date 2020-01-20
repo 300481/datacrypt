@@ -1,11 +1,11 @@
-# rancheros-data-encryption
+# datacrypt
 
-Provides an encrypted filesystem on a RancherOS host
+Provides an encrypted filesystem on a Docker host
 
 ## run container
 
 ```bash
-docker run -d --privileged -e CRYPT_KEY_URL --name enc --cap-add SYS_ADMIN --cap-add DAC_READ_SEARCH --cap-add MKNOD -v /mnt:/mnt -v /dev:/dev 300481/rancheros-data-encryption
+docker run -d --privileged -e CRYPT_KEY_URL --name enc --cap-add SYS_ADMIN --cap-add DAC_READ_SEARCH --cap-add MKNOD -v /mnt:/mnt -v /dev:/dev 300481/datacrypt
 ```
 
 ## environment
@@ -27,8 +27,8 @@ rancher:
   environment:
     CRYPT_KEY_URL: http://url.to.your.key
   repositories:
-    rancheros-data-encryption:
-      url: https://raw.githubusercontent.com/300481/rancheros-data-encryption/master
+    datacrypt:
+      url: https://raw.githubusercontent.com/300481/datacrypt/master
   services_include:
-    rancheros-data-encryption: true
+    datacrypt: true
 ```
