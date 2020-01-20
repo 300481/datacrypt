@@ -20,7 +20,7 @@ The `CRYPT_KEY_URL` is mandatory.
 |`CRYPT_KEY_URL`|HTTP URL to the encryption key.||
 |`CRYPT_CONTAINER_SIZE_PERCENTAGE`|Percentage of the free disk space for the enrypted container.|`80`|
 
-## cloud-config snippet
+## cloud-config snippet for RancherOS
 
 ```yaml
 rancher:
