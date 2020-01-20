@@ -14,9 +14,9 @@ COPY files/ /files/
 FROM ubuntu:bionic
 LABEL maintainer="Dennis Riemenschneider <30048@300481.de>"
 
-LABEL org.label-schema.name="300481/rancheros-data-encryption"
-LABEL org.label-schema.docker.cmd="docker run -d --privileged -e CRYPT_KEY_URL --cap-add SYS_ADMIN --cap-add DAC_READ_SEARCH --cap-add MKNOD -v /mnt:/mnt -v /dev:/dev 300481/rancheros-data-encryption"
-LABEL org.label-schema.vcs-url="https://github.com/300481/rancheros-data-encryption"
+LABEL org.label-schema.name="300481/rdatacrypt"
+LABEL org.label-schema.docker.cmd="docker run -d --privileged -e CRYPT_KEY_URL --cap-add SYS_ADMIN --cap-add DAC_READ_SEARCH --cap-add MKNOD -v /mnt:/mnt -v /dev:/dev 300481/datacrypt"
+LABEL org.label-schema.vcs-url="https://github.com/300481/datacrypt"
 
 # install prerequisites
 RUN DEBIAN_FRONTEND=noninteractive \
