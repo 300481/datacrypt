@@ -30,10 +30,10 @@ create_container() {
     losetup ${LOOPDEV} ${CRYPT_CONTAINER}
 
     # encrypt container
-    curl ${CRYPT_KEY_URL} | cryptsetup -v --debug -c aes-xts-plain64 -s 512 -h sha512 -d - -q luksFormat ${LOOPDEV}
+    curl -L ${CRYPT_KEY_URL} | cryptsetup -v --debug -c aes-xts-plain64 -s 512 -h sha512 -d - -q luksFormat ${LOOPDEV}
 
     # open container
-    curl ${CRYPT_KEY_URL} | cryptsetup -v --debug -d - luksOpen ${LOOPDEV} container
+    curl -L ${CRYPT_KEY_URL} | cryptsetup -v --debug -d - luksOpen ${LOOPDEV} container
 
     # create file system
     echo "create file system in crypto container"
