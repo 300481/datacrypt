@@ -13,12 +13,9 @@ CRYPT_CONTAINER="/mnt/crypt-container"
 # write available loop device into file
 losetup -f > /tmp/loopdev
 
-# write data path into a file
-echo ${DATA_PATH} > /tmp/datapath
-
 create_container() {
     # get available loop device
-    LOOPDEV=$(losetup -f)
+    LOOPDEV=$(< /tmp/loopdev)
 
     # create container file
     echo "create crypto container"
@@ -43,11 +40,11 @@ create_container() {
 open_container() {
     echo "open crypto container"
     # get available loop device
-    LOOPDEV=$(losetup -f)
+    LOOPDEV=$(< /tmp/loopdev)
     # mount container file into loop device
     losetup ${LOOPDEV} ${CRYPT_CONTAINER}
     # open container
-    curl ${CRYPT_KEY_URL} | cryptsetup -v --debug -d - luksOpen ${LOOPDEV} container
+    curl -L ${CRYPT_KEY_URL} | cryptsetup -v --debug -d - luksOpen ${LOOPDEV} container
 }
 
 init_encryption() {
@@ -59,10 +56,17 @@ init_encryption() {
     fi
 
     # if data path don't exist, create it
-    [[ ! -d ${DATA_PATH} ]] && mkdir -p ${DATA_PATH}
+    if [[ ! -d ${DATA_PATH} ]] ; then
+        echo "data path not existing. will be creataed."
+        mkdir -p ${DATA_PATH}
+    fi
 
     # if crypt container file don't exist, create it, otherwise just open it
-    [[ ! -f ${CRYPT_CONTAINER} ]] && create_container || open_container    
+    if [[ -f ${CRYPT_CONTAINER} ]] ; then
+        open_container
+    else
+        create_container
+    fi
 
     # mount container
     echo "mount crypto container"
