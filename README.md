@@ -32,3 +32,7 @@ rancher:
   services_include:
     datacrypt: true
 ```
+
+## Related Article
+
+To get more information regarding the purpose of this container image, please see my article on [Medium](https://dennis-riemenschneider.medium.com/how-to-encrypt-your-headless-linux-server-2de9c7f0f972)
