@@ -7,7 +7,7 @@ datacrypt:
     - MKNOD
   labels:
     io.rancher.os.scope: system
-    io.rancher.os.after: console
+    io.rancher.os.after: docker
   volumes:
     - /mnt:/mnt:z,shared
     - /dev:/dev
