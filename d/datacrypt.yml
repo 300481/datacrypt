@@ -6,8 +6,8 @@ datacrypt:
     - DAC_READ_SEARCH
     - MKNOD
   labels:
-    io.rancher.os.scope: "system"
-    io.rancher.os.after: "network"
+    io.rancher.os.scope: system
+    io.rancher.os.after: console
   volumes:
     - /mnt:/mnt:z,shared
     - /dev:/dev
