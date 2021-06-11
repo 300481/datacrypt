@@ -1,15 +1,14 @@
 #!/bin/bash
 
 LOOPDEV=$(</tmp/loopdev)
-DATA_PATH=$(</tmp/datapath)
 
 close_encryption() {
     # write cache
     echo "write cache"
     sync
     # unmount 
-    echo "unmount ${DATA_PATH}"
-    mount | grep -q "${DATA_PATH}" && umount ${DATA_PATH}
+    echo "unmount /dev/mapper/container"
+    mount | grep -q "/dev/mapper/container" && umount /dev/mapper/container
     # close container
     echo "close container"
     [[ -L /dev/mapper/container ]] && cryptsetup close container
