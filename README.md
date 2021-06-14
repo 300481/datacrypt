@@ -35,6 +35,8 @@ rancher:
 
 ## Butane config for Fedora CoreOS
 
+[Example config file](https://github.com/300481/datacrypt/blob/master/fcos-config.yaml)
+
 ```yaml
 systemd:
   units:
