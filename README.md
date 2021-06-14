@@ -33,6 +33,41 @@ rancher:
     datacrypt: true
 ```
 
+## Butane config for Fedora CoreOS
+
+**Use this only when installing with the current Fedora CoreOS version!!!**
+
+Find the current download [here](https://getfedora.org/en/coreos/download?tab=metal_virtualized&stream=stable)
+
+```yaml
+systemd:
+  units:
+    - name: datacrypt.service
+      enabled: true
+      contents: |
+        [Unit]
+        Description=Encryption at rest
+        Before=systemd-user-sessions.service
+        After=network-online.target
+        [Service]
+        Type=exec
+        Environment=CRYPT_KEY_URL='<<<YOUR_KEY_URL_HERE>>>' CRYPT_CONTAINER_SIZE_PERCENTAGE='<<<YOUR_PERCENTAGE_HERE>>>'
+        ExecStart=/usr/local/bin/encryption-start.sh
+        ExecStop=/usr/local/bin/encryption-stop.sh
+        [Install]
+        WantedBy=multi-user.target
+storage:
+  files:
+    - path: /usr/local/bin/encryption-start.sh
+      mode: 0755
+      contents:
+        source: https://raw.githubusercontent.com/300481/datacrypt/fcos-0.2.0/files/startscripts/encryption.sh
+    - path: /usr/local/bin/encryption-stop.sh
+      mode: 0755
+      contents:
+        source: https://raw.githubusercontent.com/300481/datacrypt/fcos-0.2.0/files/stopscripts/shutdown.sh
+```
+
 ## Related Article
 
 To get more information regarding the purpose of this container image, please see my article on [Medium](https://dennis-riemenschneider.medium.com/how-to-encrypt-your-headless-linux-server-2de9c7f0f972)
