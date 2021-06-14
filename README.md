@@ -35,10 +35,6 @@ rancher:
 
 ## Butane config for Fedora CoreOS
 
-**Use this only when installing with the current Fedora CoreOS version!!!**
-
-Find the current download [here](https://getfedora.org/en/coreos/download?tab=metal_virtualized&stream=stable)
-
 ```yaml
 systemd:
   units:
