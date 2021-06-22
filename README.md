@@ -1,6 +1,6 @@
 # datacrypt
 
-Provides an encrypted filesystem on a Docker host
+Provides an encrypted filesystem on a Docker host or native on Fedora CoreOS.
 
 ## run container
 
